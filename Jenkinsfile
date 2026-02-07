@@ -37,7 +37,4 @@ pipeline {
     }
 
   }
-  environment {
-    label = 'python_agent'
-  }
 }
