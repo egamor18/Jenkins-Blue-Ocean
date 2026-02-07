@@ -8,8 +8,25 @@ pipeline {
     }
 
     stage('second-stage') {
-      steps {
-        echo 'this is the second stage'
+      parallel {
+        stage('second-stage') {
+          steps {
+            echo 'this is the second stage'
+          }
+        }
+
+        stage('parallel-stage') {
+          steps {
+            echo 'parallel stage mesage'
+          }
+        }
+
+        stage('another-parallel-stage') {
+          steps {
+            echo 'another parallel stage'
+          }
+        }
+
       }
     }
 
@@ -19,5 +36,8 @@ pipeline {
       }
     }
 
+  }
+  environment {
+    label = 'python_agent'
   }
 }
